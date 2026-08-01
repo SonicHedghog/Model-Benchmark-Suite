@@ -1,6 +1,6 @@
 # Local Model Benchmark Suite
 
-A compact, self-contained suite of 47 prompts for evaluating LLMs across 8 categories:
+A compact, self-contained suite of 49 prompts for evaluating LLMs across 8 categories:
 
 | Category | File | # Items | Modality |
 |---|---|---|---|
@@ -10,7 +10,7 @@ A compact, self-contained suite of 47 prompts for evaluating LLMs across 8 categ
 | Science & Math | `prompts/science_math.json` | 7 | text |
 | Logic | `prompts/logic.json` | 7 | text |
 | 3D Visualization & Creation | `prompts/three_d.json` | 7 | text + image (mesh generation auto-validated by geometry checks) |
-| Agentic 3D | `prompts/agentic_3d.json` | 1 | agentic (Blender MCP or headless Blender) |
+| Agentic 3D | `prompts/agentic_3d.json` | 3 | agentic (Blender MCP or headless Blender) |
 | Other Modalities | `prompts/other_modalities.json` | 6 | audio / structured data / ASCII / base64 |
 
 ## Scoring

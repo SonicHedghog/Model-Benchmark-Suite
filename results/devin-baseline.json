@@ -285,6 +285,18 @@
           "answer": "Built headlessly with examples/baseline_v8_build.py (Blender 3.0.1, bpy API): 8 tilted pistons in two 4-cylinder banks at 90 degrees, crankshaft along Y with 4 throws, 8 rods; validator scored 10/10; render at results/devin-baseline-v8.png",
           "score": 1.0,
           "note": "validator score (0-1)"
+        },
+        {
+          "id": "a3d-02-blender-eiffel",
+          "answer": "Built headlessly with examples/baseline_eiffel_build.py (Blender 3.0.1): 4 inward-leaning legs on a 4x4 footprint, 2 platforms, tapering tower cone and spire to z=10; validator scored 10/10; render at results/devin-baseline-eiffel.png",
+          "score": 1.0,
+          "note": "validator score (0-1)"
+        },
+        {
+          "id": "a3d-03-blender-sonic",
+          "answer": "Built headlessly with examples/baseline_sonic_build.py (Blender 3.0.1): blue head/body, 6 back-swept quills, 2 front eyes, arms/legs, red shoes; validator scored 10/10; render at results/devin-baseline-sonic.png",
+          "score": 1.0,
+          "note": "validator score (0-1)"
         }
       ],
       "score": 1.0,
