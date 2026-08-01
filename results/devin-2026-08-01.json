@@ -230,6 +230,54 @@
       "score": 1.0,
       "ungraded": 0
     },
+    "three_d": {
+      "items": [
+        {
+          "id": "3d-01-mesh-cube",
+          "answer": "```python\ndef make_cube_obj(size: float) -> str:\n    h = size / 2.0\n    verts = [(-h,-h,-h),(h,-h,-h),(h,h,-h),(-h,h,-h),(-h,-h,h),(h,-h,h),(h,h,h),(-h,h,h)]\n    faces = [\n        (1,3,2),(1,4,3),  # bottom (z=-h)\n        (5,6,7),(5,7,8),  # top (z=+h)\n        (1,2,6),(1,6,5),  # front (y=-h)\n        (3,4,8),(3,8,7),  # back (y=+h)\n        (4,1,5),(4,5,8),  # left (x=-h)\n        (2,3,7),(2,7,6),  # right (x=+h)\n    ]\n    lines = [f\"v {x} {y} {z}\" for x, y, z in verts]\n    lines += [f\"f {a} {b} {c}\" for a, b, c in faces]\n    return \"\\n\".join(lines) + \"\\n\"\n```",
+          "score": 1.0,
+          "note": "OK"
+        },
+        {
+          "id": "3d-02-rotation",
+          "answer": "```python\nimport math\n\ndef rotate_z(point, degrees):\n    x, y, z = point\n    r = math.radians(degrees)\n    c, s = math.cos(r), math.sin(r)\n    return (x * c - y * s, x * s + y * c, z)\n```",
+          "score": 1.0,
+          "note": "OK"
+        },
+        {
+          "id": "3d-03-ray-sphere",
+          "answer": "```python\ndef ray_hits_sphere(origin, direction, center, radius) -> bool:\n    ox, oy, oz = origin\n    dx, dy, dz = direction\n    cx, cy, cz = center\n    lx, ly, lz = cx - ox, cy - oy, cz - oz\n    if lx*lx + ly*ly + lz*lz <= radius*radius:\n        return True  # origin inside sphere\n    dd = dx*dx + dy*dy + dz*dz\n    if dd == 0:\n        return False\n    t = (lx*dx + ly*dy + lz*dz) / dd\n    if t < 0:\n        return False\n    px, py, pz = ox + t*dx - cx, oy + t*dy - cy, oz + t*dz - cz\n    return px*px + py*py + pz*pz <= radius*radius + 1e-9\n```",
+          "score": 1.0,
+          "note": "OK"
+        },
+        {
+          "id": "3d-04-scene-read",
+          "answer": "3, green",
+          "score": 1.0,
+          "note": "missing=[]"
+        },
+        {
+          "id": "3d-05-surface-read",
+          "answer": "zmax about 2 at (0, 0)",
+          "score": 1.0,
+          "note": "missing=[]"
+        },
+        {
+          "id": "3d-06-mental-rotation",
+          "answer": "2",
+          "score": 1.0,
+          "note": "parsed=2.0"
+        },
+        {
+          "id": "3d-07-mesh-pyramid",
+          "answer": "```python\ndef make_pyramid_obj(base: float, height: float) -> str:\n    h = base / 2.0\n    verts = [(-h,-h,0),(h,-h,0),(h,h,0),(-h,h,0),(0,0,height)]\n    faces = [\n        (1,3,2),(1,4,3),          # base (two triangles)\n        (1,2,5),(2,3,5),(3,4,5),(4,1,5),  # sides\n    ]\n    lines = [f\"v {x} {y} {z}\" for x, y, z in verts]\n    lines += [f\"f {a} {b} {c}\" for a, b, c in faces]\n    return \"\\n\".join(lines) + \"\\n\"\n```",
+          "score": 1.0,
+          "note": "OK"
+        }
+      ],
+      "score": 1.0,
+      "ungraded": 0
+    },
     "other_modalities": {
       "items": [
         {
