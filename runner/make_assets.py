@@ -107,10 +107,58 @@ def beeps_wav():
         w.writeframes(b"".join(struct.pack("<h", f) for f in frames))
 
 
+def scene3d_png():
+    import numpy as np
+    from mpl_toolkits.mplot3d import Axes3D  # noqa: F401
+    fig = plt.figure(figsize=(7, 6))
+    ax = fig.add_subplot(111, projection="3d")
+    # blue sphere
+    u, v = np.mgrid[0:2 * np.pi:30j, 0:np.pi:20j]
+    ax.plot_surface(1.2 * np.cos(u) * np.sin(v) - 2.5,
+                    1.2 * np.sin(u) * np.sin(v) + 2,
+                    1.2 * np.cos(v) + 1.2, color="blue")
+    # red cube
+    r = [0, 2]
+    for s, e in [((x1, y1, z1), (x2, y2, z2))
+                 for x1 in r for y1 in r for z1 in r
+                 for x2 in r for y2 in r for z2 in r
+                 if sum(a != b for a, b in zip((x1, y1, z1), (x2, y2, z2))) == 1]:
+        ax.plot3D(*zip(s, e), color="red", linewidth=2)
+    # green cone
+    theta = np.linspace(0, 2 * np.pi, 30)
+    z = np.linspace(0, 2.5, 30)
+    T, Z = np.meshgrid(theta, z)
+    R = 1.0 * (1 - Z / 2.5)
+    ax.plot_surface(R * np.cos(T) + 4, R * np.sin(T) - 2, Z, color="green")
+    ax.set_xlim(-5, 6)
+    ax.set_ylim(-4, 4)
+    ax.set_zlim(0, 3)
+    ax.set_axis_off()
+    fig.savefig(os.path.join(ASSETS, "scene3d.png"), dpi=100, bbox_inches="tight")
+    plt.close(fig)
+
+
+def surface3d_png():
+    import numpy as np
+    fig = plt.figure(figsize=(7, 6))
+    ax = fig.add_subplot(111, projection="3d")
+    x = np.linspace(-3, 3, 80)
+    X, Y = np.meshgrid(x, x)
+    Z = 2 * np.exp(-(X ** 2 + Y ** 2))
+    ax.plot_surface(X, Y, Z, cmap="viridis")
+    ax.set_xlabel("x")
+    ax.set_ylabel("y")
+    ax.set_zlabel("z")
+    fig.savefig(os.path.join(ASSETS, "surface3d.png"), dpi=100, bbox_inches="tight")
+    plt.close(fig)
+
+
 if __name__ == "__main__":
     shapes_png()
     chart_png()
     ocr_png()
     flowchart_png()
     beeps_wav()
+    scene3d_png()
+    surface3d_png()
     print("assets written to", os.path.abspath(ASSETS))

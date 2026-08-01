@@ -1,0 +1,42 @@
+{
+  "category": "three_d",
+  "items": [
+    {
+      "id": "3d-01-mesh-cube",
+      "prompt": "Write a Python function `make_cube_obj(size: float) -> str` that returns the contents of a Wavefront OBJ file for an axis-aligned cube centered at the origin with edge length `size`. Use 'v x y z' vertex lines and 'f a b c' triangular face lines (1-indexed). The mesh must have exactly 8 vertices and 12 triangular faces covering all 6 sides. Output only a Python code block.",
+      "scoring": {"type": "code_tests", "test_file": "test_3d_01.py"}
+    },
+    {
+      "id": "3d-02-rotation",
+      "prompt": "Write a Python function `rotate_z(point: tuple[float, float, float], degrees: float) -> tuple[float, float, float]` that rotates a 3D point counterclockwise around the +Z axis (viewed from +Z looking down) by the given angle in degrees. Output only a Python code block.",
+      "scoring": {"type": "code_tests", "test_file": "test_3d_02.py"}
+    },
+    {
+      "id": "3d-03-ray-sphere",
+      "prompt": "Write a Python function `ray_hits_sphere(origin, direction, center, radius) -> bool` that returns True if a ray starting at `origin` traveling along `direction` (both 3-tuples; direction need not be normalized, ray extends only forward) intersects a sphere at `center` with `radius`. Output only a Python code block.",
+      "scoring": {"type": "code_tests", "test_file": "test_3d_03.py"}
+    },
+    {
+      "id": "3d-04-scene-read",
+      "prompt": "This image shows a 3D scene with several solids. How many objects are in the scene, and what color is the cone? Answer as 'N, color'.",
+      "image": "assets/scene3d.png",
+      "scoring": {"type": "contains_all", "expected": ["3", "green"]}
+    },
+    {
+      "id": "3d-05-surface-read",
+      "prompt": "This image shows a 3D surface plot of z = f(x, y) over the domain shown. Approximately what is the maximum value of z on the surface, and at roughly what (x, y) does it occur? Answer as 'zmax about A at (B, C)'.",
+      "image": "assets/surface3d.png",
+      "scoring": {"type": "contains_all", "expected": ["2", "0, 0"]}
+    },
+    {
+      "id": "3d-06-mental-rotation",
+      "prompt": "A standard die has opposite faces summing to 7. It rests on a table with 1 facing up and 2 facing toward you. It is tipped over once away from you (rolling onto the face that was away from you). Which number now faces up? Answer with the number only.",
+      "scoring": {"type": "numeric", "expected": 2, "tolerance": 0}
+    },
+    {
+      "id": "3d-07-mesh-pyramid",
+      "prompt": "Write a Python function `make_pyramid_obj(base: float, height: float) -> str` returning OBJ file contents for a square pyramid: a square base of side `base` centered at the origin in the z=0 plane, and an apex at (0, 0, height). Use 5 vertices and 6 triangular 'f' faces (4 sides + 2 for the base). Output only a Python code block.",
+      "scoring": {"type": "code_tests", "test_file": "test_3d_07.py"}
+    }
+  ]
+}

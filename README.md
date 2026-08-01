@@ -1,6 +1,6 @@
 # Local Model Benchmark Suite
 
-A compact, self-contained suite of 39 prompts for evaluating LLMs across 6 categories:
+A compact, self-contained suite of 46 prompts for evaluating LLMs across 7 categories:
 
 | Category | File | # Items | Modality |
 |---|---|---|---|
@@ -9,6 +9,7 @@ A compact, self-contained suite of 39 prompts for evaluating LLMs across 6 categ
 | Coding | `prompts/coding.json` | 7 | text (auto-graded by unit tests) |
 | Science & Math | `prompts/science_math.json` | 7 | text |
 | Logic | `prompts/logic.json` | 7 | text |
+| 3D Visualization & Creation | `prompts/three_d.json` | 7 | text + image (mesh generation auto-validated by geometry checks) |
 | Other Modalities | `prompts/other_modalities.json` | 6 | audio / structured data / ASCII / base64 |
 
 ## Scoring
