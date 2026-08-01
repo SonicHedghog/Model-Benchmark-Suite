@@ -1,0 +1,40 @@
+{
+  "category": "science_math",
+  "items": [
+    {
+      "id": "sm-01-arithmetic",
+      "prompt": "Compute 847 * 362 - 15^3. Answer with the number only.",
+      "scoring": {"type": "numeric", "expected": 303239, "tolerance": 0}
+    },
+    {
+      "id": "sm-02-algebra",
+      "prompt": "Solve for x: 3(2x - 5) + 4 = 7x - 2(x - 6). Answer with the value of x only.",
+      "scoring": {"type": "numeric", "expected": 23, "tolerance": 0.001}
+    },
+    {
+      "id": "sm-03-probability",
+      "prompt": "A bag has 5 red, 3 blue, and 4 green marbles. Two marbles are drawn without replacement. What is the probability both are green? Give the answer as a fraction in lowest terms or a decimal to 4 places.",
+      "scoring": {"type": "contains_any", "expected": ["1/11", "0.0909"]}
+    },
+    {
+      "id": "sm-04-physics",
+      "prompt": "A ball is dropped from rest from a 45 m tower (g = 10 m/s^2, ignore air resistance). How long does it take to hit the ground, and what is its speed on impact? Answer in the form: time=X s, speed=Y m/s.",
+      "scoring": {"type": "contains_all", "expected": ["3", "30"]}
+    },
+    {
+      "id": "sm-05-chemistry",
+      "prompt": "Balance this equation and give the coefficient of O2 only: C3H8 + O2 -> CO2 + H2O. Answer with the number only.",
+      "scoring": {"type": "numeric", "expected": 5, "tolerance": 0}
+    },
+    {
+      "id": "sm-06-calculus",
+      "prompt": "What is the derivative of f(x) = x^3 * ln(x) evaluated at x = e? Simplify and answer as a multiple of e^2 (e.g. '7e^2') or a decimal to 2 places.",
+      "scoring": {"type": "contains_any", "expected": ["4e^2", "4e²", "29.56"]}
+    },
+    {
+      "id": "sm-07-multistep",
+      "prompt": "A bacterial culture doubles every 3 hours. Starting with 200 cells, how many cells are there after 18 hours? Then, how many hours (from the start) until the population first exceeds 100,000? Answer in the form: cells=X, hours=Y (Y as an integer number of whole 3-hour doubling periods times 3).",
+      "scoring": {"type": "contains_all", "expected": ["12800", "27"]}
+    }
+  ]
+}

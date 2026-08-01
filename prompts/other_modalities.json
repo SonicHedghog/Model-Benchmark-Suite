@@ -1,0 +1,36 @@
+{
+  "category": "other_modalities",
+  "items": [
+    {
+      "id": "om-01-audio",
+      "prompt": "This audio clip contains a sequence of beeps. How many beeps are there? Answer with the number only.",
+      "audio": "assets/beeps.wav",
+      "scoring": {"type": "numeric", "expected": 5, "tolerance": 0}
+    },
+    {
+      "id": "om-02-base64",
+      "prompt": "Decode this base64 string and answer only with the decoded text: VGhlIHBhc3N3b3JkIGlzIHN3b3JkZmlzaC03Mg==",
+      "scoring": {"type": "contains_all", "expected": ["swordfish-72"]}
+    },
+    {
+      "id": "om-03-ascii-art",
+      "prompt": "What single digit does this ASCII art depict? Answer with the digit only.\n\n#####\n#   #\n#   #\n#####\n    #\n    #\n#####",
+      "scoring": {"type": "contains_any", "expected": ["9"]}
+    },
+    {
+      "id": "om-04-json-to-csv",
+      "prompt": "Convert this JSON array to CSV with a header row, comma-separated, rows in the given order. Output only the CSV.\n\n[{\"name\":\"Ada\",\"dept\":\"Eng\",\"level\":5},{\"name\":\"Grace\",\"dept\":\"Eng\",\"level\":7},{\"name\":\"Alan\",\"dept\":\"Research\",\"level\":6}]",
+      "scoring": {"type": "contains_all", "expected": ["name,dept,level", "Ada,Eng,5", "Grace,Eng,7", "Alan,Research,6"]}
+    },
+    {
+      "id": "om-05-emoji-logic",
+      "prompt": "If 🍎🍎🍎 = 30, 🍎 + 🍌🍌 = 18, and 🍌 - 🍒 = 2, what is 🍒 + 🍎 * 🍌? Follow standard order of operations. Answer with the number only.",
+      "scoring": {"type": "numeric", "expected": 42, "tolerance": 0}
+    },
+    {
+      "id": "om-06-spatial-text",
+      "prompt": "You face north. Turn right, walk 3 blocks, turn left, walk 2 blocks, turn left again, walk 3 blocks. In which direction are you now facing, and how many blocks are you (straight-line) from your start? Answer as 'direction, N blocks'.",
+      "scoring": {"type": "contains_all", "expected": ["west", "2"]}
+    }
+  ]
+}

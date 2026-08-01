@@ -1,0 +1,40 @@
+{
+  "category": "coding",
+  "items": [
+    {
+      "id": "code-01-function",
+      "prompt": "Write a Python function `run_length_encode(s: str) -> str` that compresses a string using run-length encoding, e.g. 'aaabccdddd' -> 'a3b1c2d4'. Empty string returns ''. Output only a Python code block.",
+      "scoring": {"type": "code_tests", "test_file": "test_code_01.py"}
+    },
+    {
+      "id": "code-02-debug",
+      "prompt": "This function is supposed to return the second-largest distinct value in a list, but it has a bug. Fix it and output only the corrected function in a Python code block.\n\ndef second_largest(nums):\n    top = second = float('-inf')\n    for n in nums:\n        if n > top:\n            top = n\n        elif n > second:\n            second = n\n    return second",
+      "scoring": {"type": "code_tests", "test_file": "test_code_02.py"}
+    },
+    {
+      "id": "code-03-predict-output",
+      "prompt": "What does this Python print? Answer with the exact output only.\n\nx = [1, 2, 3]\ny = x\ny.append(4)\nz = x[:2]\nz.append(99)\nprint(len(x), sum(z), x is y)",
+      "scoring": {"type": "contains_all", "expected": ["4 102 True"]}
+    },
+    {
+      "id": "code-04-sql",
+      "prompt": "Given tables orders(id, customer_id, total) and customers(id, name), write a single SQL query returning each customer's name and their total spend, only for customers whose total spend exceeds 1000, ordered by spend descending. Output only SQL.",
+      "scoring": {"type": "rubric", "rubric": "1pt: correct JOIN + SUM + GROUP BY name/customer; 1pt: HAVING SUM(total) > 1000 (not WHERE) and ORDER BY the sum DESC."}
+    },
+    {
+      "id": "code-05-regex",
+      "prompt": "Write a Python function `extract_ips(text: str) -> list[str]` that returns all IPv4 addresses in a string (each octet 0-255, no leading-zero requirement enforcement needed, but octets over 255 must NOT match). Output only a Python code block.",
+      "scoring": {"type": "code_tests", "test_file": "test_code_05.py"}
+    },
+    {
+      "id": "code-06-algorithm",
+      "prompt": "Write a Python function `min_coins(amount: int, coins: list[int]) -> int` returning the minimum number of coins to make `amount`, or -1 if impossible. Must handle amount up to 10000 efficiently (no exponential recursion). Output only a Python code block.",
+      "scoring": {"type": "code_tests", "test_file": "test_code_06.py"}
+    },
+    {
+      "id": "code-07-code-review",
+      "prompt": "Identify the security vulnerability in this code in one sentence and name its class:\n\nimport sqlite3\ndef get_user(conn, username):\n    cur = conn.cursor()\n    cur.execute(f\"SELECT * FROM users WHERE name = '{username}'\")\n    return cur.fetchone()",
+      "scoring": {"type": "contains_any", "expected": ["sql injection", "sqli"]}
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "category": "visual",
+  "items": [
+    {
+      "id": "vis-01-count",
+      "prompt": "How many circles are in this image? Answer with the number only.",
+      "image": "assets/shapes.png",
+      "scoring": {"type": "numeric", "expected": 7, "tolerance": 0}
+    },
+    {
+      "id": "vis-02-color-spatial",
+      "prompt": "In this image, what color is the shape in the top-right corner, and what kind of shape is it? Answer as 'color shape' (e.g. 'blue circle').",
+      "image": "assets/shapes.png",
+      "scoring": {"type": "contains_all", "expected": ["red", "triangle"]}
+    },
+    {
+      "id": "vis-03-chart-read",
+      "prompt": "According to this bar chart, which month had the highest revenue and what was its value in $k? Answer as 'Month value'.",
+      "image": "assets/chart.png",
+      "scoring": {"type": "contains_all", "expected": ["Apr", "91"]}
+    },
+    {
+      "id": "vis-04-chart-compare",
+      "prompt": "Using this bar chart, how much higher (in $k) was Apr revenue than Feb revenue? Answer with the number only.",
+      "image": "assets/chart.png",
+      "scoring": {"type": "numeric", "expected": 34, "tolerance": 1}
+    },
+    {
+      "id": "vis-05-ocr",
+      "prompt": "Transcribe the text shown in this image exactly.",
+      "image": "assets/ocr.png",
+      "scoring": {"type": "contains_all", "expected": ["Gate B7 boarding 18:42", "seat 23F"]}
+    },
+    {
+      "id": "vis-06-diagram",
+      "prompt": "This image shows a simple flowchart. Starting at START with x=3, what value is printed at the end? Answer with the number only.",
+      "image": "assets/flowchart.png",
+      "scoring": {"type": "numeric", "expected": 15, "tolerance": 0}
+    }
+  ]
+}

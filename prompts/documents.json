@@ -1,0 +1,35 @@
+{
+  "category": "documents",
+  "items": [
+    {
+      "id": "doc-01-extraction",
+      "prompt": "Read the memo below and answer ONLY with the requested value.\n\n---MEMO---\nFrom: Regional Ops\nDate: March 14, 2025\nSubject: Q1 warehouse consolidation\n\nAs of April 1 we will close the Reno facility (built 1998, 42,000 sq ft) and shift its volume to Sparks (built 2011, 61,500 sq ft) and Fernley (built 2005, 38,750 sq ft). Sparks will absorb 70% of Reno's 9,200 weekly units; Fernley takes the rest. Headcount: 12 Reno staff transfer to Sparks, 5 to Fernley, and 3 accepted severance.\n---END---\n\nQuestion: How many weekly units will Fernley absorb from Reno?",
+      "scoring": {"type": "numeric", "expected": 2760, "tolerance": 0}
+    },
+    {
+      "id": "doc-02-table-qa",
+      "prompt": "Below is a markdown table of invoices.\n\n| Invoice | Client | Amount | Status | Due |\n|---|---|---|---|---|\n| INV-101 | Acme | $4,200 | Paid | 2025-01-15 |\n| INV-102 | Borland | $1,850 | Overdue | 2025-01-20 |\n| INV-103 | Acme | $3,300 | Overdue | 2025-02-01 |\n| INV-104 | Cyberdyne | $9,750 | Paid | 2025-02-10 |\n| INV-105 | Borland | $2,400 | Pending | 2025-03-05 |\n\nWhat is the total dollar amount of all Overdue invoices? Answer with the number only.",
+      "scoring": {"type": "numeric", "expected": 5150, "tolerance": 0}
+    },
+    {
+      "id": "doc-03-contradiction",
+      "prompt": "The two passages below contradict each other on exactly one factual point. State the contradiction in one sentence.\n\nPassage A: \"The Meridian Bridge opened to traffic in 1962 and spans 480 meters across the Kern River. It was designed by the firm Hollis & Webb and carries four lanes.\"\n\nPassage B: \"Designed by Hollis & Webb, the four-lane Meridian Bridge across the Kern River opened in 1962. At 620 meters, it was the longest bridge in the county for two decades.\"",
+      "scoring": {"type": "contains_all", "expected": ["480", "620"]}
+    },
+    {
+      "id": "doc-04-summary",
+      "prompt": "Summarize the following policy excerpt in exactly one sentence of no more than 25 words.\n\n\"Employees may work remotely up to three days per week, provided their manager approves a standing schedule in advance. Remote days may not be adjacent to public holidays without director-level sign-off. Equipment for home offices is reimbursed up to $500 annually, receipts required. Violations of the schedule policy result in revocation of remote privileges for one quarter.\"",
+      "scoring": {"type": "rubric", "rubric": "1pt: single sentence <=25 words; 1pt: captures 3-day remote limit with manager approval AND at least one of: holiday-adjacency restriction, $500 reimbursement, or revocation penalty."}
+    },
+    {
+      "id": "doc-05-needle",
+      "prompt": "Find the answer buried in this log excerpt. Answer with the value only.\n\n[08:00:01] svc-a startup ok\n[08:00:02] svc-b startup ok\n[08:00:05] cache warm 8341 keys\n[08:01:12] request burst from 10.0.4.77\n[08:02:33] config reload: max_connections changed from 512 to 768\n[08:03:01] gc pause 41ms\n[08:04:19] svc-b degraded: queue depth 1204\n[08:05:00] alert paged on-call: jrivera\n[08:05:44] svc-b recovered\n\nQuestion: What was max_connections changed TO?",
+      "scoring": {"type": "numeric", "expected": 768, "tolerance": 0}
+    },
+    {
+      "id": "doc-06-structured-extract",
+      "prompt": "Extract the following from the email into strict JSON with keys: name, company, phone, meeting_date (YYYY-MM-DD). Output ONLY the JSON object.\n\n\"Hi team — Priya Nair from Delta Forge reached out; she can do a demo call next Thursday, June 12th, 2025. Best number for her is (415) 555-0142. Please confirm by EOD. — M.\"",
+      "scoring": {"type": "contains_all", "expected": ["Priya Nair", "Delta Forge", "555-0142", "2025-06-12"]}
+    }
+  ]
+}
