@@ -21,7 +21,7 @@ import urllib.request
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
-CATEGORIES = ["documents", "visual", "coding", "science_math", "logic", "other_modalities"]
+CATEGORIES = ["documents", "visual", "coding", "science_math", "logic", "three_d", "other_modalities"]
 
 
 def chat(base_url, api_key, model, messages, temperature=0.0, timeout=300):
