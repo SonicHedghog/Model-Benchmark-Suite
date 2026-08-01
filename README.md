@@ -45,6 +45,12 @@ Compare runs:
 python3 runner/compare.py results/*.json
 ```
 
+## Running through Devin
+
+See `DEVIN_PLAYBOOK.md`: point a Devin session at this repo to benchmark either
+an API-reachable model (Procedure A) or the agent itself (Procedure B, via
+`runner/make_answer_template.py` + `runner/grade_manual.py`).
+
 ## Baseline
 
 `results/devin-baseline.json` contains Devin's own answers/scores for comparison.
