@@ -1,0 +1,277 @@
+{
+  "model": "devin-2026-08-01",
+  "base_url": "offline",
+  "categories": {
+    "documents": {
+      "items": [
+        {
+          "id": "doc-01-extraction",
+          "answer": "2760",
+          "score": 1.0,
+          "note": "parsed=2760.0"
+        },
+        {
+          "id": "doc-02-table-qa",
+          "answer": "5150",
+          "score": 1.0,
+          "note": "parsed=5150.0"
+        },
+        {
+          "id": "doc-03-contradiction",
+          "answer": "Passage A says the bridge spans 480 meters, while Passage B says it is 620 meters long.",
+          "score": 1.0,
+          "note": "missing=[]"
+        },
+        {
+          "id": "doc-04-summary",
+          "answer": "Employees may work remotely up to three manager-approved days weekly, with violations revoking remote privileges for one quarter.",
+          "score": 1.0,
+          "note": "manual rubric"
+        },
+        {
+          "id": "doc-05-needle",
+          "answer": "768",
+          "score": 1.0,
+          "note": "parsed=768.0"
+        },
+        {
+          "id": "doc-06-structured-extract",
+          "answer": "{\"name\": \"Priya Nair\", \"company\": \"Delta Forge\", \"phone\": \"(415) 555-0142\", \"meeting_date\": \"2025-06-12\"}",
+          "score": 1.0,
+          "note": "missing=[]"
+        }
+      ],
+      "score": 1.0,
+      "ungraded": 0
+    },
+    "visual": {
+      "items": [
+        {
+          "id": "vis-01-count",
+          "answer": "7",
+          "score": 1.0,
+          "note": "parsed=7.0"
+        },
+        {
+          "id": "vis-02-color-spatial",
+          "answer": "red triangle",
+          "score": 1.0,
+          "note": "missing=[]"
+        },
+        {
+          "id": "vis-03-chart-read",
+          "answer": "Apr 91",
+          "score": 1.0,
+          "note": "missing=[]"
+        },
+        {
+          "id": "vis-04-chart-compare",
+          "answer": "34",
+          "score": 1.0,
+          "note": "parsed=34.0"
+        },
+        {
+          "id": "vis-05-ocr",
+          "answer": "Gate B7 boarding 18:42\nFlight QX-118, seat 23F",
+          "score": 1.0,
+          "note": "missing=[]"
+        },
+        {
+          "id": "vis-06-diagram",
+          "answer": "15",
+          "score": 1.0,
+          "note": "parsed=15.0"
+        }
+      ],
+      "score": 1.0,
+      "ungraded": 0
+    },
+    "coding": {
+      "items": [
+        {
+          "id": "code-01-function",
+          "answer": "```python\ndef run_length_encode(s: str) -> str:\n    if not s:\n        return \"\"\n    out = []\n    prev, count = s[0], 1\n    for ch in s[1:]:\n        if ch == prev:\n            count += 1\n        else:\n            out.append(f\"{prev}{count}\")\n            prev, count = ch, 1\n    out.append(f\"{prev}{count}\")\n    return \"\".join(out)\n```",
+          "score": 1.0,
+          "note": "OK"
+        },
+        {
+          "id": "code-02-debug",
+          "answer": "```python\ndef second_largest(nums):\n    top = second = float('-inf')\n    for n in nums:\n        if n > top:\n            second = top\n            top = n\n        elif n != top and n > second:\n            second = n\n    return second\n```",
+          "score": 1.0,
+          "note": "OK"
+        },
+        {
+          "id": "code-03-predict-output",
+          "answer": "4 102 True",
+          "score": 1.0,
+          "note": "missing=[]"
+        },
+        {
+          "id": "code-04-sql",
+          "answer": "SELECT c.name, SUM(o.total) AS total_spend\nFROM customers c\nJOIN orders o ON o.customer_id = c.id\nGROUP BY c.id, c.name\nHAVING SUM(o.total) > 1000\nORDER BY total_spend DESC;",
+          "score": 1.0,
+          "note": "manual rubric"
+        },
+        {
+          "id": "code-05-regex",
+          "answer": "```python\nimport re\n\ndef extract_ips(text: str) -> list[str]:\n    octet = r\"(?:25[0-5]|2[0-4]\\d|1\\d\\d|\\d\\d?)\"\n    pattern = rf\"(?<![\\d.])(?:{octet}\\.){{3}}{octet}(?![\\d.])\"\n    return re.findall(pattern, text)\n```",
+          "score": 1.0,
+          "note": "OK"
+        },
+        {
+          "id": "code-06-algorithm",
+          "answer": "```python\ndef min_coins(amount: int, coins: list[int]) -> int:\n    INF = float('inf')\n    dp = [0] + [INF] * amount\n    for a in range(1, amount + 1):\n        for c in coins:\n            if c <= a and dp[a - c] + 1 < dp[a]:\n                dp[a] = dp[a - c] + 1\n    return dp[amount] if dp[amount] != INF else -1\n```",
+          "score": 1.0,
+          "note": "OK"
+        },
+        {
+          "id": "code-07-code-review",
+          "answer": "The username is interpolated directly into the SQL string, allowing SQL injection; use parameterized queries instead.",
+          "score": 1.0,
+          "note": ""
+        }
+      ],
+      "score": 1.0,
+      "ungraded": 0
+    },
+    "science_math": {
+      "items": [
+        {
+          "id": "sm-01-arithmetic",
+          "answer": "303239",
+          "score": 1.0,
+          "note": "parsed=303239.0"
+        },
+        {
+          "id": "sm-02-algebra",
+          "answer": "23",
+          "score": 1.0,
+          "note": "parsed=23.0"
+        },
+        {
+          "id": "sm-03-probability",
+          "answer": "1/11 (0.0909)",
+          "score": 1.0,
+          "note": ""
+        },
+        {
+          "id": "sm-04-physics",
+          "answer": "time=3 s, speed=30 m/s",
+          "score": 1.0,
+          "note": "missing=[]"
+        },
+        {
+          "id": "sm-05-chemistry",
+          "answer": "5",
+          "score": 1.0,
+          "note": "parsed=5.0"
+        },
+        {
+          "id": "sm-06-calculus",
+          "answer": "4e^2 (about 29.56)",
+          "score": 1.0,
+          "note": ""
+        },
+        {
+          "id": "sm-07-multistep",
+          "answer": "cells=12800, hours=27",
+          "score": 1.0,
+          "note": "missing=[]"
+        }
+      ],
+      "score": 1.0,
+      "ungraded": 0
+    },
+    "logic": {
+      "items": [
+        {
+          "id": "log-01-knights-knaves",
+          "answer": "A is a knave, B is a knight. If A were a knight the statement would be true, making A a knave \u2014 contradiction; so A lies, meaning they are not both knaves, so B is a knight.",
+          "score": 1.0,
+          "note": "missing=[]"
+        },
+        {
+          "id": "log-02-syllogism",
+          "answer": "No \u2014 the razzies that are lazzies need not overlap with the bloops.",
+          "score": 1.0,
+          "note": ""
+        },
+        {
+          "id": "log-03-constraints",
+          "answer": "Bob",
+          "score": 1.0,
+          "note": "missing=[]"
+        },
+        {
+          "id": "log-04-wason",
+          "answer": "A and 7",
+          "score": 1.0,
+          "note": "missing=[]"
+        },
+        {
+          "id": "log-05-sequence",
+          "answer": "42",
+          "score": 1.0,
+          "note": "parsed=42.0"
+        },
+        {
+          "id": "log-06-transitive",
+          "answer": "Sam",
+          "score": 1.0,
+          "note": "missing=[]"
+        },
+        {
+          "id": "log-07-parity",
+          "answer": "ON",
+          "score": 1.0,
+          "note": ""
+        }
+      ],
+      "score": 1.0,
+      "ungraded": 0
+    },
+    "other_modalities": {
+      "items": [
+        {
+          "id": "om-01-audio",
+          "answer": "5",
+          "score": 1.0,
+          "note": "parsed=5.0"
+        },
+        {
+          "id": "om-02-base64",
+          "answer": "The password is swordfish-72",
+          "score": 1.0,
+          "note": "missing=[]"
+        },
+        {
+          "id": "om-03-ascii-art",
+          "answer": "9",
+          "score": 1.0,
+          "note": ""
+        },
+        {
+          "id": "om-04-json-to-csv",
+          "answer": "name,dept,level\nAda,Eng,5\nGrace,Eng,7\nAlan,Research,6",
+          "score": 1.0,
+          "note": "missing=[]"
+        },
+        {
+          "id": "om-05-emoji-logic",
+          "answer": "42",
+          "score": 1.0,
+          "note": "parsed=42.0"
+        },
+        {
+          "id": "om-06-spatial-text",
+          "answer": "west, 2 blocks",
+          "score": 1.0,
+          "note": "missing=[]"
+        }
+      ],
+      "score": 1.0,
+      "ungraded": 0
+    }
+  },
+  "overall": 1.0
+}
