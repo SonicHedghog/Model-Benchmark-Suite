@@ -1,0 +1,40 @@
+{
+  "category": "logic",
+  "items": [
+    {
+      "id": "log-01-knights-knaves",
+      "prompt": "On an island, knights always tell the truth and knaves always lie. A says: 'We are both knaves.' B says nothing. What are A and B? Answer in the form 'A is a ..., B is a ...'.",
+      "scoring": {"type": "contains_all", "expected": ["A is a knave", "B is a knight"]}
+    },
+    {
+      "id": "log-02-syllogism",
+      "prompt": "All bloops are razzies. Some razzies are lazzies. Does it logically follow that some bloops are lazzies? Answer 'yes' or 'no' with a one-sentence justification.",
+      "scoring": {"type": "regex", "expected": "\\bno\\b"}
+    },
+    {
+      "id": "log-03-constraints",
+      "prompt": "Alice, Bob, and Carol sit in a row of three seats (left, middle, right). Alice is not in the left seat. Bob sits immediately to the right of Carol. Who is in the middle seat? Answer with the name only.",
+      "scoring": {"type": "contains_all", "expected": ["Bob"]}
+    },
+    {
+      "id": "log-04-wason",
+      "prompt": "Four cards show: A, K, 4, 7. Each card has a letter on one side and a number on the other. Rule: 'If a card has a vowel on one side, it has an even number on the other.' Which cards MUST you flip to check whether the rule holds? Answer with just the card faces.",
+      "scoring": {"type": "contains_all", "expected": ["A", "7"]}
+    },
+    {
+      "id": "log-05-sequence",
+      "prompt": "What is the next number in the sequence 2, 6, 12, 20, 30, ...? Answer with the number only.",
+      "scoring": {"type": "numeric", "expected": 42, "tolerance": 0}
+    },
+    {
+      "id": "log-06-transitive",
+      "prompt": "Tom is taller than Sam. Sam is taller than Rita. Uma is shorter than Rita. Who is the second-tallest of the four? Answer with the name only.",
+      "scoring": {"type": "contains_all", "expected": ["Sam"]}
+    },
+    {
+      "id": "log-07-parity",
+      "prompt": "A light starts OFF. Its switch is flipped exactly 15 times. Then a second person flips it a further 6 times. Is the light now ON or OFF? Answer with one word.",
+      "scoring": {"type": "regex", "expected": "\\bon\\b"}
+    }
+  ]
+}

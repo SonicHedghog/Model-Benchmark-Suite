@@ -3,7 +3,7 @@
 import json
 import sys
 
-CATEGORIES = ["documents", "visual", "coding", "science_math", "other_modalities"]
+CATEGORIES = ["documents", "visual", "coding", "science_math", "logic", "other_modalities"]
 
 
 def main():

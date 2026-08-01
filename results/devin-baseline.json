@@ -182,6 +182,54 @@
       "score": 1.0,
       "ungraded": 0
     },
+    "logic": {
+      "items": [
+        {
+          "id": "log-01-knights-knaves",
+          "answer": "A is a knave, B is a knight. If A were a knight the statement would be true, making A a knave \u2014 contradiction; so A lies, meaning they are not both knaves, so B is a knight.",
+          "score": 1.0,
+          "note": "missing=[]"
+        },
+        {
+          "id": "log-02-syllogism",
+          "answer": "No \u2014 the razzies that are lazzies need not overlap with the bloops.",
+          "score": 1.0,
+          "note": ""
+        },
+        {
+          "id": "log-03-constraints",
+          "answer": "Bob",
+          "score": 1.0,
+          "note": "missing=[]"
+        },
+        {
+          "id": "log-04-wason",
+          "answer": "A and 7",
+          "score": 1.0,
+          "note": "missing=[]"
+        },
+        {
+          "id": "log-05-sequence",
+          "answer": "42",
+          "score": 1.0,
+          "note": "parsed=42.0"
+        },
+        {
+          "id": "log-06-transitive",
+          "answer": "Sam",
+          "score": 1.0,
+          "note": "missing=[]"
+        },
+        {
+          "id": "log-07-parity",
+          "answer": "ON",
+          "score": 1.0,
+          "note": ""
+        }
+      ],
+      "score": 1.0,
+      "ungraded": 0
+    },
     "other_modalities": {
       "items": [
         {

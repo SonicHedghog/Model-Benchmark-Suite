@@ -21,7 +21,7 @@ import urllib.request
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
-CATEGORIES = ["documents", "visual", "coding", "science_math", "other_modalities"]
+CATEGORIES = ["documents", "visual", "coding", "science_math", "logic", "other_modalities"]
 
 
 def chat(base_url, api_key, model, messages, temperature=0.0, timeout=300):
@@ -105,6 +105,8 @@ def score_item(args, item, answer):
     if t == "contains_all":
         missing = [e for e in s["expected"] if norm(e) not in norm(answer)]
         return (1.0 if not missing else 0.0), f"missing={missing}"
+    if t == "regex":
+        return (1.0 if re.search(s["expected"], answer, re.I) else 0.0), ""
     if t == "contains_any":
         return (1.0 if any(norm(e) in norm(answer) for e in s["expected"]) else 0.0), ""
     if t == "code_tests":

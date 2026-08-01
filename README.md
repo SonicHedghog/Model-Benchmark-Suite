@@ -1,6 +1,6 @@
 # Local Model Benchmark Suite
 
-A compact, self-contained suite of 32 prompts for evaluating LLMs across 5 categories:
+A compact, self-contained suite of 39 prompts for evaluating LLMs across 6 categories:
 
 | Category | File | # Items | Modality |
 |---|---|---|---|
@@ -8,12 +8,14 @@ A compact, self-contained suite of 32 prompts for evaluating LLMs across 5 categ
 | Visual | `prompts/visual.json` | 6 | image + text |
 | Coding | `prompts/coding.json` | 7 | text (auto-graded by unit tests) |
 | Science & Math | `prompts/science_math.json` | 7 | text |
+| Logic | `prompts/logic.json` | 7 | text |
 | Other Modalities | `prompts/other_modalities.json` | 6 | audio / structured data / ASCII / base64 |
 
 ## Scoring
 
 Each item has a `scoring` block:
 - `exact` — normalized string equality with `expected`
+- `regex` — answer must match the regex (case-insensitive)
 - `contains_all` / `contains_any` — answer must contain (all/any of) the listed substrings (case-insensitive)
 - `numeric` — parsed number within `tolerance` of `expected`
 - `code_tests` — extract the code block from the answer, run the paired test file in `runner/tests/`
