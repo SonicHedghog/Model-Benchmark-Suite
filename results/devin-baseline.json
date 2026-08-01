@@ -278,6 +278,18 @@
       "score": 1.0,
       "ungraded": 0
     },
+    "agentic_3d": {
+      "items": [
+        {
+          "id": "a3d-01-blender-v8",
+          "answer": "Built headlessly with examples/baseline_v8_build.py (Blender 3.0.1, bpy API): 8 tilted pistons in two 4-cylinder banks at 90 degrees, crankshaft along Y with 4 throws, 8 rods; validator scored 10/10; render at results/devin-baseline-v8.png",
+          "score": 1.0,
+          "note": "validator score (0-1)"
+        }
+      ],
+      "score": 1.0,
+      "ungraded": 0
+    },
     "other_modalities": {
       "items": [
         {

@@ -44,6 +44,12 @@ def main():
                     score, note = manual[item["id"]] / 2.0, "manual rubric"
                 else:
                     score, note = None, "manual grading required"
+            elif item["scoring"]["type"] == "agentic":
+                agentic = data.get("manual_agentic_scores", {})
+                if item["id"] in agentic and agentic[item["id"]] is not None:
+                    score, note = float(agentic[item["id"]]), "validator score (0-1)"
+                else:
+                    score, note = None, f"run agentically, validate with {item['scoring']['validator']}"
             else:
                 score, note = score_item(argparse.Namespace(judge_model=None), item, ans)
             cat_items.append({"id": item["id"], "answer": ans,

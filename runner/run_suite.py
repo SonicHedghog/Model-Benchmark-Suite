@@ -21,7 +21,7 @@ import urllib.request
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
-CATEGORIES = ["documents", "visual", "coding", "science_math", "logic", "three_d", "other_modalities"]
+CATEGORIES = ["documents", "visual", "coding", "science_math", "logic", "three_d", "agentic_3d", "other_modalities"]
 
 
 def chat(base_url, api_key, model, messages, temperature=0.0, timeout=300):
@@ -113,6 +113,8 @@ def score_item(args, item, answer):
         return run_code_tests(answer, s["test_file"])
     if t == "rubric":
         return judge_rubric(args, item, answer)
+    if t == "agentic":
+        return None, f"agentic item — run via an agent, then validate with {s['validator']}"
     raise ValueError(t)
 
 

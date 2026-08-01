@@ -5,8 +5,9 @@ Give a Devin session this repo plus one of the procedures below. Results land in
 
 ## Overview
 
-Benchmark a model on 39 prompts across documents, visual, coding, science/math,
-logic, and other modalities, then commit the graded results to this repo.
+Benchmark a model on 47 prompts across documents, visual, coding, science/math,
+logic, 3D, agentic 3D (Blender), and other modalities, then commit the graded
+results to this repo.
 
 ## Procedure A — Benchmark a model behind an API
 
@@ -49,7 +50,12 @@ Use to benchmark the agent rather than an API.
    python3 runner/grade_manual.py my-answers.json --out results/<model>.json
    python3 runner/compare.py results/*.json
    ```
-5. Commit the results file on a branch and open a PR (do not commit `my-answers.json`).
+5. For the agentic item `a3d-01-blender-v8`: install Blender (`sudo apt-get install -y blender`),
+   build the V8 engine scene per the prompt (Blender MCP server or `blender -b --python`),
+   validate with `blender -b v8_engine.blend --python runner/validate_v8.py`, and record
+   score/10 in `manual_agentic_scores`. If Blender/tool access is unavailable, leave it
+   ungraded and note why.
+6. Commit the results file on a branch and open a PR (do not commit `my-answers.json`).
 
 ## Forbidden Actions
 

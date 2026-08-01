@@ -25,7 +25,7 @@ def main():
     ap.add_argument("--out", required=True)
     args = ap.parse_args()
     template = {"model": args.model, "answers": {}, "manual_rubric_scores": {},
-                "_prompts": {}}
+                "manual_agentic_scores": {}, "_prompts": {}}
     for cat in CATEGORIES:
         with open(os.path.join(ROOT, "prompts", f"{cat}.json")) as f:
             suite = json.load(f)
@@ -39,6 +39,9 @@ def main():
             if item["scoring"]["type"] == "rubric":
                 meta["rubric"] = item["scoring"]["rubric"]
                 template["manual_rubric_scores"][item["id"]] = None
+            elif item["scoring"]["type"] == "agentic":
+                meta["validator"] = item["scoring"]["validator"]
+                template["manual_agentic_scores"][item["id"]] = None
             template["_prompts"][item["id"]] = meta
     with open(args.out, "w") as f:
         json.dump(template, f, indent=2, ensure_ascii=False)

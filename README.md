@@ -1,6 +1,6 @@
 # Local Model Benchmark Suite
 
-A compact, self-contained suite of 46 prompts for evaluating LLMs across 7 categories:
+A compact, self-contained suite of 47 prompts for evaluating LLMs across 8 categories:
 
 | Category | File | # Items | Modality |
 |---|---|---|---|
@@ -10,6 +10,7 @@ A compact, self-contained suite of 46 prompts for evaluating LLMs across 7 categ
 | Science & Math | `prompts/science_math.json` | 7 | text |
 | Logic | `prompts/logic.json` | 7 | text |
 | 3D Visualization & Creation | `prompts/three_d.json` | 7 | text + image (mesh generation auto-validated by geometry checks) |
+| Agentic 3D | `prompts/agentic_3d.json` | 1 | agentic (Blender MCP or headless Blender) |
 | Other Modalities | `prompts/other_modalities.json` | 6 | audio / structured data / ASCII / base64 |
 
 ## Scoring
@@ -21,6 +22,7 @@ Each item has a `scoring` block:
 - `numeric` — parsed number within `tolerance` of `expected`
 - `code_tests` — extract the code block from the answer, run the paired test file in `runner/tests/`
 - `rubric` — 0–2 human/judge-graded against `rubric` criteria
+- `agentic` — the model (as an agent) performs a task with external tools; graded by the item's validator script. For `a3d-01-blender-v8` the agent builds a V8 engine in Blender (via the Blender MCP server or `blender -b --python`), then `blender -b v8_engine.blend --python runner/validate_v8.py` prints a score out of 10 (record score/10 in `manual_agentic_scores`). Skipped (left ungraded) by the API runner — requires an agent with tool access and Blender installed (`apt install blender`).
 
 Score per item is 0 or 1 (rubric items: score/2). Category score = mean. Overall = mean of category scores.
 

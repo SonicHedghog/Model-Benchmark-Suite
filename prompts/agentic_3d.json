@@ -1,0 +1,10 @@
+{
+  "category": "agentic_3d",
+  "items": [
+    {
+      "id": "a3d-01-blender-v8",
+      "prompt": "AGENTIC TASK (requires Blender access — e.g. the Blender MCP server, or headless `blender -b --python`): Model a V8 engine from scratch in Blender. Requirements:\n- 8 pistons (cylinder meshes) named `Piston.1` ... `Piston.8`, arranged as two banks of 4 forming a 90-degree V (each bank tilted 45 degrees from vertical, in opposite directions across the crank axis)\n- A crankshaft named `Crankshaft` running along the Y axis beneath the pistons, longer than it is wide, with at least 4 crank-throw meshes named `Throw.*` offset from the crank axis\n- 8 connecting rods named `Rod.1` ... `Rod.8`, each linking a piston toward the crankshaft\n- Pistons within each bank evenly spaced along Y\nSave the scene as `v8_engine.blend` and render a perspective view to `v8_engine.png`.\nValidate with: `blender -b v8_engine.blend --python runner/validate_v8.py` (prints a score out of 10; >=8 passes).",
+      "scoring": {"type": "agentic", "validator": "runner/validate_v8.py", "pass_threshold": 0.8, "rubric": "Score = validator points / 10. Additionally eyeball v8_engine.png: it should recognizably show a V-configuration engine."}
+    }
+  ]
+}
