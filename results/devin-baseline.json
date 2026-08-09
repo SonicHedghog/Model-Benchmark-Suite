@@ -288,18 +288,18 @@
         },
         {
           "id": "a3d-02-blender-eiffel",
-          "answer": "Built headlessly with examples/baseline_eiffel_build.py (Blender 3.0.1): 4 inward-leaning legs on a 4x4 footprint, 2 platforms, tapering tower cone and spire to z=10; validator scored 10/10; render at results/devin-baseline-eiffel.png",
-          "score": 1.0,
+          "answer": "Built headlessly with examples/baseline_eiffel_build.py (Blender 3.0.1): 4 inward-leaning legs on a 4x4 footprint, 2 platforms, tapering tower cone and spire to z=10; structural validator 10/10, shape vs CC-BY Poly Pizza reference 9/10 (chamfer 0.019) => 0.95; render at results/devin-baseline-eiffel.png",
+          "score": 0.95,
           "note": "validator score (0-1)"
         },
         {
           "id": "a3d-03-blender-sonic",
-          "answer": "Built headlessly with examples/baseline_sonic_build.py (Blender 3.0.1): blue head/body, 6 back-swept quills, 2 front eyes, arms/legs, red shoes; validator scored 10/10; render at results/devin-baseline-sonic.png",
-          "score": 1.0,
+          "answer": "Built headlessly with examples/baseline_sonic_build.py (Blender 3.0.1): blue head/body, 6 back-swept quills, 2 front eyes, arms/legs, red shoes; structural validator 10/10, shape vs low-poly Classic Sonic reference 4/10 (chamfer 0.050) => 0.70; render at results/devin-baseline-sonic.png",
+          "score": 0.7,
           "note": "validator score (0-1)"
         }
       ],
-      "score": 1.0,
+      "score": 0.883,
       "ungraded": 0
     },
     "other_modalities": {
@@ -345,5 +345,5 @@
       "ungraded": 0
     }
   },
-  "overall": 1.0
+  "overall": 0.985
 }

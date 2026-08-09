@@ -67,8 +67,8 @@ sphere("Eye.1", (-0.3, 0.72, 2.4), 0.22, WHITE, scale=(0.7, 0.5, 1.2))
 sphere("Eye.2", (0.3, 0.72, 2.4), 0.22, WHITE, scale=(0.7, 0.5, 1.2))
 
 # arms and legs
-cyl("Arm.1", (-0.75, 0, 1.3), 0.1, 0.8, PEACH, rotation=(0, math.radians(35), 0))
-cyl("Arm.2", (0.75, 0, 1.3), 0.1, 0.8, PEACH, rotation=(0, math.radians(-35), 0))
+cyl("Arm.1", (-0.95, 0, 1.5), 0.1, 1.0, PEACH, rotation=(0, math.radians(90), 0))
+cyl("Arm.2", (0.95, 0, 1.5), 0.1, 1.0, PEACH, rotation=(0, math.radians(90), 0))
 cyl("Leg.1", (-0.28, 0, 0.45), 0.11, 0.7, BLUE)
 cyl("Leg.2", (0.28, 0, 0.45), 0.11, 0.7, BLUE)
 
