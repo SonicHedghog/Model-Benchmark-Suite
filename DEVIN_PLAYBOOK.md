@@ -54,7 +54,11 @@ Use to benchmark the agent rather than an API.
    `a3d-03-blender-sonic`): install Blender (`sudo apt-get install -y blender`),
    build each scene per its prompt (Blender MCP server or `blender -b --python`),
    validate with the item's validator (e.g. `blender -b v8_engine.blend --python
-   runner/validate_v8.py`), and record each score/10 in `manual_agentic_scores`.
+   runner/validate_v8.py`), and record each score in `manual_agentic_scores`.
+   The Eiffel and Sonic items are also shape-scored against real reference
+   models: export the scene to OBJ and run `python3 runner/compare_mesh.py
+   <export.obj> assets/ref3d/<ref>_points.npz` (needs `pip install trimesh
+   scipy numpy`); final score = (structure + shape) / 20.
    If Blender/tool access is unavailable, leave them ungraded and note why.
 6. Commit the results file on a branch and open a PR (do not commit `my-answers.json`).
 
