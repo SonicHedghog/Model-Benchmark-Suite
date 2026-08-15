@@ -6,8 +6,10 @@ Give a Devin session this repo plus one of the procedures below. Results land in
 ## Overview
 
 Benchmark a model on 49 prompts across documents, visual, coding, science/math,
-logic, 3D, agentic 3D (Blender), and other modalities, then commit the graded
-results to this repo.
+logic, 3D, agentic 3D (Blender), and other modalities — plus an optional
+3-prompt hardware+software projects category (`hw_projects`, tiered: garden
+waterer / portable camera / NAS build) — then commit the graded results to
+this repo.
 
 ## Procedure A — Benchmark a model behind an API
 
@@ -21,6 +23,8 @@ base URL, model name, and an API key secret if needed.
    python3 runner/run_suite.py --base-url <BASE_URL> --model <MODEL> \
        --api-key $API_KEY --out results/<MODEL>.json
    ```
+   Add `--include-optional` to also run the hardware+software projects
+   category (auto-graded by `runner/validate_hw.py`, no extra tools needed).
 3. Grade any `rubric` items left ungraded: read the item's `rubric` in
    `prompts/*.json`, judge the recorded answer 0/1/2, and fold the score in
    (or pass `--judge-model`/`--judge-base-url` to auto-judge).
@@ -39,6 +43,10 @@ Use to benchmark the agent rather than an API.
    ```bash
    python3 runner/make_answer_template.py --model "devin-<date>" --out my-answers.json
    ```
+   Add `--include-optional` to include the hardware+software projects category
+   (its answers are auto-graded by `grade_manual.py`; each must contain the four
+   fenced artifacts the prompt specifies — JSON BOM/parts, JSON wiring/storage
+   plan, Python function, markdown instructions).
 2. Answer every item in `_prompts` honestly, WITHOUT looking at `prompts/*.json`
    scoring fields, the tests in `runner/tests/`, or existing results files.
    For items with an `image`/`audio` key, open the asset file and answer from it.

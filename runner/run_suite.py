@@ -21,7 +21,10 @@ import urllib.request
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
+sys.path.insert(0, HERE)
+from validate_hw import MAX_POINTS as HW_MAX, score_answer as score_hw  # noqa: E402
 CATEGORIES = ["documents", "visual", "coding", "science_math", "logic", "three_d", "agentic_3d", "other_modalities"]
+OPTIONAL_CATEGORIES = ["hw_projects"]  # opt in via --categories / --include-optional
 
 
 def chat(base_url, api_key, model, messages, temperature=0.0, timeout=300):
@@ -115,6 +118,9 @@ def score_item(args, item, answer):
         return judge_rubric(args, item, answer)
     if t == "agentic":
         return None, f"agentic item — run via an agent, then validate with {s['validator']}"
+    if t == "hw_project":
+        points, notes = score_hw(item["id"], answer)
+        return round(points / HW_MAX, 3), "; ".join(notes[:5]) or "all checks passed"
     raise ValueError(t)
 
 
@@ -127,11 +133,16 @@ def main():
     ap.add_argument("--judge-model")
     ap.add_argument("--judge-api-key")
     ap.add_argument("--categories", default=",".join(CATEGORIES))
+    ap.add_argument("--include-optional", action="store_true",
+                    help="also run optional categories (hw_projects)")
     ap.add_argument("--out", required=True)
     args = ap.parse_args()
 
     results = {"model": args.model, "base_url": args.base_url, "categories": {}}
-    for cat in args.categories.split(","):
+    cats = args.categories.split(",")
+    if args.include_optional:
+        cats += [c for c in OPTIONAL_CATEGORIES if c not in cats]
+    for cat in cats:
         with open(os.path.join(ROOT, "prompts", f"{cat}.json")) as f:
             suite = json.load(f)
         cat_items = []

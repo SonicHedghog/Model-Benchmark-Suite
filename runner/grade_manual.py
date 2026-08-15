@@ -15,7 +15,7 @@ import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from run_suite import CATEGORIES, ROOT, score_item  # noqa: E402
+from run_suite import CATEGORIES, OPTIONAL_CATEGORIES, ROOT, score_item  # noqa: E402
 
 
 def main():
@@ -29,7 +29,13 @@ def main():
     manual = data.get("manual_rubric_scores", {})
 
     results = {"model": data.get("model", "unknown"), "base_url": "offline", "categories": {}}
-    for cat in CATEGORIES:
+    cats = list(CATEGORIES)
+    for opt in OPTIONAL_CATEGORIES:
+        with open(os.path.join(ROOT, "prompts", f"{opt}.json")) as f:
+            ids = [i["id"] for i in json.load(f)["items"]]
+        if any(answers.get(i) for i in ids):  # graded only if attempted
+            cats.append(opt)
+    for cat in cats:
         with open(os.path.join(ROOT, "prompts", f"{cat}.json")) as f:
             suite = json.load(f)
         cat_items = []
@@ -40,7 +46,7 @@ def main():
                                   "score": 0.0, "note": "no answer"})
                 continue
             if item["scoring"]["type"] == "rubric":
-                if item["id"] in manual:
+                if manual.get(item["id"]) is not None:
                     score, note = manual[item["id"]] / 2.0, "manual rubric"
                 else:
                     score, note = None, "manual grading required"

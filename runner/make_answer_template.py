@@ -16,17 +16,19 @@ import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from run_suite import CATEGORIES, ROOT  # noqa: E402
+from run_suite import CATEGORIES, OPTIONAL_CATEGORIES, ROOT  # noqa: E402
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", required=True)
     ap.add_argument("--out", required=True)
+    ap.add_argument("--include-optional", action="store_true",
+                    help="also include optional categories (hw_projects)")
     args = ap.parse_args()
     template = {"model": args.model, "answers": {}, "manual_rubric_scores": {},
                 "manual_agentic_scores": {}, "_prompts": {}}
-    for cat in CATEGORIES:
+    for cat in CATEGORIES + (OPTIONAL_CATEGORIES if args.include_optional else []):
         with open(os.path.join(ROOT, "prompts", f"{cat}.json")) as f:
             suite = json.load(f)
         for item in suite["items"]:

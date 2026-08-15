@@ -1,6 +1,6 @@
 # Local Model Benchmark Suite
 
-A compact, self-contained suite of 49 prompts for evaluating LLMs across 8 categories:
+A compact, self-contained suite of 49 prompts for evaluating LLMs across 8 categories (plus an optional 3-prompt hardware+software projects category):
 
 | Category | File | # Items | Modality |
 |---|---|---|---|
@@ -12,6 +12,7 @@ A compact, self-contained suite of 49 prompts for evaluating LLMs across 8 categ
 | 3D Visualization & Creation | `prompts/three_d.json` | 7 | text + image (mesh generation auto-validated by geometry checks) |
 | Agentic 3D | `prompts/agentic_3d.json` | 3 | agentic (Blender MCP or headless Blender) |
 | Other Modalities | `prompts/other_modalities.json` | 6 | audio / structured data / ASCII / base64 |
+| Hardware+Software Projects (optional) | `prompts/hw_projects.json` | 3 | text — structured artifacts (BOM, wiring netlist, code, instructions), auto-graded |
 
 ## Scoring
 
@@ -22,6 +23,7 @@ Each item has a `scoring` block:
 - `numeric` — parsed number within `tolerance` of `expected`
 - `code_tests` — extract the code block from the answer, run the paired test file in `runner/tests/`
 - `rubric` — 0–2 human/judge-graded against `rubric` criteria
+- `hw_project` — hardware+software project design (optional category, 3 complexity tiers: Tier 1 automatic garden waterer, Tier 2 portable Raspberry Pi camera, Tier 3 4-bay NAS build). The model must emit four fenced artifacts: a JSON BOM/parts list, a JSON wiring netlist (or PC-part spec), a Python control/logic function, and a markdown instructions document. `runner/validate_hw.py <item-id> <answer-file>` grades each out of 10: BOM/parts completeness & compatibility rules (e.g. CPU socket matches motherboard, enough SATA ports, PSU wattage), electrical-rule checks on the netlist (sensor→ADC pin, relay→GPIO, pump through relay contacts, common grounds, forbidden shorts), the code run against a simulated-hardware test harness (hysteresis/safety-cutoff, event state machine, RAID capacity math), and an instructions checklist (calibration, safety, testing…). Graded automatically by the API runner — include it with `--include-optional` (or `--categories …,hw_projects`).
 - `agentic` — the model (as an agent) performs a task with external tools; graded by the item's validator scripts. The three Blender items (`a3d-01` V8 engine, `a3d-02` Eiffel Tower, `a3d-03` Classic Sonic) are built via the Blender MCP server or `blender -b --python`, then scored with a structural validator run inside Blender (`runner/validate_v8.py`, `runner/validate_eiffel.py`, `runner/validate_sonic.py` — each out of 10). The Eiffel and Sonic items are ADDITIONALLY scored on shape against real reference models (`runner/compare_mesh.py <export.obj> assets/ref3d/<ref>_points.npz` — normalized Chamfer distance vs point clouds sampled from a CC-BY Poly Pizza Eiffel Tower and a low-poly Classic Sonic; see `assets/ref3d/ATTRIBUTION.md`); their final score = (structure + shape) / 20. Record scores (0–1) in `manual_agentic_scores`. Skipped (left ungraded) by the API runner — requires an agent with tool access, Blender (`apt install blender`), and `pip install trimesh scipy numpy` for the shape comparison.
 
 Score per item is 0 or 1 (rubric items: score/2). Category score = mean. Overall = mean of category scores.
